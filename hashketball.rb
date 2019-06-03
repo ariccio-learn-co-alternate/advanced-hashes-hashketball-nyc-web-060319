@@ -135,6 +135,7 @@ def good_practices
     end
   end
 end
+<<<<<<< HEAD
 
 def find_player(name)
   game_hash.each do |team, team_data|
@@ -216,3 +217,78 @@ def big_shoe_rebounds
 end
 
 #big_shoe_rebounds
+=======
+
+def find_player(name)
+  game_hash.each do |team, team_data|
+    #binding.pry
+    if team_data[:players].include?(name)
+      return team_data[:players][name]
+    end
+  end
+  nil
+end
+
+def num_points_scored(name)
+  player = find_player(name)
+  player[:points]
+end
+
+def shoe_size(name)
+  player = find_player(name)
+  player[:shoe]
+end
+
+def find_team(team_name)
+  game_hash.each do |team, team_data|
+    if team_data[:team_name] == team_name
+      return team_data
+    end
+  end
+  return nil
+end
+
+def team_colors(team_name)
+  team = find_team(team_name)
+  team[:colors]
+end
+
+def team_names
+  names = []
+  game_hash.each do |team, team_data|
+    names << team_data[:team_name]
+  end
+  names
+end
+
+def player_numbers(team_name)
+  team = find_team(team_name)
+  nums = []
+  team[:players].each do |player_name, data|
+    nums << data[:number]
+  end
+  nums.sort
+end
+
+def player_stats(name)
+  player = find_player(name)
+  player
+end
+
+def biggest_shoe_player
+  biggest_shoe_size = -1
+  biggest_player = nil
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |player_name, data|
+      if data[:shoe] > biggest_shoe_size
+        biggest_shoe_size = data[:shoe]
+        biggest_player = player_name
+        binding.pry
+      end
+    end
+  end
+biggest_player
+end
+
+biggest_shoe_player
+>>>>>>> c410e724b92d38faa48bac27e9f7ae2ce1444699
